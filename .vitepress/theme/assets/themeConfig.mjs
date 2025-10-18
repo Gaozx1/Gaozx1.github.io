@@ -5,25 +5,25 @@ export const themeConfig = {
     // 站点标题
     title: "Curve",
     // 站点描述
-    description: "Hello World",
+    description: "Gaozx's bolg",
     // 站点logo
     logo: "/images/logo/logo.webp",
     // 站点地址
-    site: "https://blog.imsyy.top",
+    site: "https://Gaozx1.github.io",
     // 语言
     lang: "zh-CN",
     // 作者
     author: {
-      name: "Admin",
+      name: "Gaozx1",
       cover: "/images/logo/logo.webp",
-      email: "114514@gmail.com",
+      email: "gzx20140715@qq.com",
       link: "https://www.imsyy.top",
     },
   },
   // 备案信息
-  icp: "萌ICP备114514号",
+  icp: "暂无",
   // 建站日期
-  since: "2020-07-28",
+  since: "2025-10-18",
   // 每页文章数据
   postSize: 8,
   // inject
@@ -155,7 +155,7 @@ export const themeConfig = {
         {
           icon: "/images/logo/logo.webp",
           name: "博客镜像站",
-          url: "https://blog-backup.imsyy.top/",
+          url: "",
         },
       ],
     },
@@ -239,11 +239,11 @@ export const themeConfig = {
     social: [
       {
         icon: "email",
-        link: "mailto:one@imsyy.top",
+        link: "gzx20140715@imsyy.top",
       },
       {
         icon: "github",
-        link: "https://www.github.com/imsyy/",
+        link: "https://www.github.com/Gaozx1/",
       },
       {
         icon: "telegram",
@@ -357,8 +357,8 @@ export const themeConfig = {
       enable: true,
       // 倒计时日期
       data: {
-        name: "春节",
-        date: "2025-01-29",
+        name: "建站",
+        date: "2025-10-18",
       },
     },
     // 站点数据
@@ -401,9 +401,9 @@ export const themeConfig = {
   rewardData: {
     enable: true,
     // 微信二维码
-    wechat: "https://pic.efefee.cn/uploads/2024/04/07/66121049d1e80.webp",
+    wechat: "",
     // 支付宝二维码
-    alipay: "https://pic.efefee.cn/uploads/2024/04/07/661206631d3b5.webp",
+    alipay: "",
   },
   // 图片灯箱
   fancybox: {
