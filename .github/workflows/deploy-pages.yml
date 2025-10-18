@@ -17,7 +17,7 @@ jobs:
     env:
       REPO_URL: "Gaozx1/Gaozx1.github.io"  # 远程仓库的 URL
       BUILD_PATH: ".vitepress/dist"  # 构建输出路径
-      CUSTOM_DOMAIN: "gaozx.qzz.io"  # 自定义域名
+      CUSTOM_DOMAIN: "Gaozx1.github.io"  # 自定义域名
 
     steps:
       - name: Set up Node.js
