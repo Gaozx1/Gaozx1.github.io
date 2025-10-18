@@ -5,8 +5,8 @@
       <!-- 介绍 -->
       <div class="about-item hello">
         <span class="text1">你好，很高兴认识你👋</span>
-        <span class="text2 title2">我是 九天之上</span>  
-        <span class="text3">是一名 又菜又爱玩的小白</span>
+        <span class="text2 title2">我是 Gaozx</span>  
+        <span class="text3">是一名 6年级小学生</span>
       </div>
       <!-- 追求 -->
       <div class="about-item pursuit">
@@ -41,11 +41,11 @@
       <div class="about-item career">
         <span class="tip">生涯</span>
         <span class="title2">
-          <i>無限進步</i>
+          <i>共同进步</i>
         </span>
         <div class="list">
-          <span class="list-item" style="--color: #357ef5">法学学士</span>
-          <span class="list-item" style="--color: #eb372a">房地产营销管理</span>
+          <span class="list-item" style="--color: #357ef5">西安</span>
+          <span class="list-item" style="--color: #eb372a">学生</span>
         </div>
         <img
           class="career-img"
@@ -58,7 +58,7 @@
       <!-- 性格 -->
       <div class="about-item character" style="--color: #4298b4">
         <span class="tip">性格</span>
-        <span class="title2">执政官</span>
+        <span class="title2">你猜</span>
         <span class="title2" style="color: var(--color)">ESFJ-A</span>
         <span class="more">
           在
@@ -144,7 +144,7 @@
           class="about-item map image"
           style="background-image: url(https://pan.811520.xyz/2024-10/1730361853-1730361845894.webp)"
         >
-          <span class="position">我现在住在 <strong>中国，武汉</strong></span>
+          <span class="position">我现在住在 <strong>中国，西安</strong></span>
         </div>
         <div class="about-item info">
           <div class="info-item">
@@ -153,7 +153,7 @@
           </div>
           <div class="info-item">
             <span class="info-name">现在职业</span>
-            <span class="info-num" style="--color: #dfac46">资深房地产营销管理</span>
+            <span class="info-num" style="--color: #dfac46">学生</span>
           </div>
         </div>
       </div>
