@@ -3,27 +3,27 @@ export const themeConfig = {
   // 站点信息
   siteMeta: {
     // 站点标题
-    title: "九天之上",
+    title: "Gaozx",
     // 站点描述
     description: "基于 vitepress-theme-curve 搭建的 github pages 站点",
     // 站点logo
     logo: "/images/logo/logo.webp",
     // 站点地址
-    site: "https://blog2.811520.xyz",
+    site: "https://Gaozx1.github.io",
     // 语言
     lang: "zh-CN",
     // 作者
     author: {
-      name: "雨天狂奔",
+      name: "gaozx",
       cover: "/images/logo/logo.webp",
-      email: "admin@24811213.xyz",
+      email: "gzx20140715@qq.com",
       link: "https://daoyi.hidns.vip/#/",
     },
   },
   // 备案信息
-  icp: "鄂ICP备202411-001号",
+  icp: "",
   // 建站日期
-  since: "2024-11-1",
+  since: "2025-10-18",
   // 每页文章数据
   postSize: 8,
   // inject
@@ -257,19 +257,19 @@ export const themeConfig = {
     social: [
       {
         icon: "email",
-        link: "mailto:admin@24811213.xyz",
+        link: "mailto:gzx20140715@qq.com",
       },
       {
         icon: "github",
-        link: "https://github.com/yutian81/",
+        link: "https://github.com/Gaozx1/",
       },
       {
-        icon: "telegram",
-        link: "https://t.me/yutian88881",
+        icon: "QQ",
+        link: "3957515385",
       },
       {
         icon: "bilibili",
-        link: "https://space.bilibili.com/677845115",
+        link: "https://space.bilibili.com/3546741141932170?spm_id_from=333.788.0.0",
       },
     ],
     // sitemap
