@@ -5,7 +5,7 @@
       <!-- 介绍 -->
       <div class="about-item hello">
         <span class="text1">你好，很高兴认识你👋</span>
-        <span class="text2 title2">我是 Gaozx</span>  
+        <span class="text2 title2">我是 Gaozx</span> 
         <span class="text3">是一名 6年级小学生</span>
       </div>
       <!-- 追求 -->
@@ -54,33 +54,16 @@
         />
       </div>
     </div>
-    <div class="about-content" style="grid-template-columns: 3fr 2fr">
-      <!-- 性格 -->
-      <div class="about-item character" style="--color: #4298b4">
-        <span class="tip">性格</span>
-        <span class="title2">你猜</span>
-        <span class="title2" style="color: var(--color)">ESFJ-A</span>
-        <span class="more">
-          在
-          <a href="https://www.16personalities.com/ch/" target="_blank">16personalities</a>
-          了解更多关于
-          <a href="https://www.16personalities.com/ch/esfj-%E4%BA%BA%E6%A0%BC" target="_blank">
-            执政官
-          </a>
-        </span>
-        <img
-          src="https://pan.811520.xyz/2024-11/1730434481-1730434479289.webp"
-          alt="male"
-          class="male"
-        />
-      </div>
-      <!-- 座右铭 -->
+    
+    <!-- 座右铭 -->
+    <div class="about-content">
       <div class="about-item">
         <span class="tip">座右铭</span>
         <span class="title1" style="margin-top: 20px">脚踏实地，</span>
         <span class="title2">一丝不苟。</span>
       </div>
     </div>
+    
     <div class="about-content" style="grid-template-columns: 1fr 1fr">
       <div
         class="about-item like image"
@@ -105,20 +88,21 @@
         "
       >
         <div class="image-content">
-          <span class="tip">音乐偏好</span>
-          <span class="title2">华语流行、摇滚、中国风、民谣</span>
+          <span class="tip">关注偏好</span>
+          <span class="title2">其他兴趣</span>
           <div class="image-desc">
-            <span class="left">一起欣赏更多音乐</span>
+            <span class="left">添加其他兴趣描述</span>
           </div>
         </div>
       </div>
     </div>
+    
     <div class="about-content" style="grid-template-columns: 2fr 3fr">
       <!-- 数据 -->
       <div
         class="about-item static image"
         style="
-          --color: #0f1114;  
+          --color: #0f1114; 
           background-image: url(https://pan.811520.xyz/2024-11/1730613487-20230703084704275.webp);
         "
       >
@@ -158,6 +142,7 @@
         </div>
       </div>
     </div>
+    
     <!-- 心路历程 -->
     <div class="about-content" style="display: flex">
       <div class="about-item">
@@ -583,6 +568,18 @@ onMounted(() => {
       display: flex;
       flex-direction: column;
     }
+  }
+}
+
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
 </style>
