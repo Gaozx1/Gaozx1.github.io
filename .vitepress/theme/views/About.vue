@@ -5,7 +5,7 @@
       <!-- 介绍 -->
       <div class="about-item hello">
         <span class="text1">你好，很高兴认识你👋</span>
-        <span class="text2 title2">我是 Gaozx</span> 
+        <span class="text2 title2">我是 gaozx</span> 
         <span class="text3">是一名 6年级小学生</span>
       </div>
       <!-- 追求 -->
@@ -74,9 +74,9 @@
       >
         <div class="image-content">
           <span class="tip">关注偏好</span>
-          <span class="title2">数码科技</span>
+          <span class="title2">编程</span>
           <div class="image-desc">
-            <span class="left">手机、电脑及软硬件</span>
+            <span class="left">c++</span>
           </div>
         </div>
       </div>
@@ -89,9 +89,9 @@
       >
         <div class="image-content">
           <span class="tip">关注偏好</span>
-          <span class="title2">其他兴趣</span>
+          <span class="title2">mc</span>
           <div class="image-desc">
-            <span class="left">添加其他兴趣描述</span>
+            <span class="left">苹果社区腐竹</span>
           </div>
         </div>
       </div>
@@ -126,14 +126,14 @@
       <div class="about-item child">
         <div
           class="about-item map image"
-          style="background-image: url(https://pan.811520.xyz/2024-10/1730361853-1730361845894.webp)"
+          style="background-image: url()"
         >
           <span class="position">我现在住在 <strong>中国，西安</strong></span>
         </div>
         <div class="about-item info">
           <div class="info-item">
             <span class="info-name">生于</span>
-            <span class="info-num" style="--color: #43a6c6">保密</span>
+            <span class="info-num" style="--color: #43a6c6">陕西西安</span>
           </div>
           <div class="info-item">
             <span class="info-name">现在职业</span>
@@ -152,7 +152,7 @@
           创建这个站的时候，想要就是能够有一个自己能够<strong>积累知识</strong>、<strong>积累兴趣</strong>的地方。和他人分享，会让这些成为<strong>积累和沉淀</strong>。如果能够帮助到更多的人，帮助更多人解决问题，那一定是非常棒的事情。
         </p>
         <p class="text">
-          这里内容很杂，<strong>工作、生活、资源分享……</strong>什么都有，可能不太会有很多人看，权当是做个自我记录吧。当然，如果某篇文章能够帮助到你，那我也是很开心的。
+          这里内容很杂，<strong>生活、资源分享……</strong>什么都有，可能不太会有很多人看，权当是做个自我记录吧。当然，如果某篇文章能够帮助到你，那我也是很开心的。
         </p>
         <p class="text">
           这些就是创造这个小站的本意，<strong>也是我分享生活的方式</strong>。有幸能和你相遇在这里，相信我们能共同留下一段美好记忆。
@@ -188,34 +188,10 @@ const skillsData = [
     link: "https://developer.mozilla.org/zh-CN/docs/Web/CSS",
   },
   {
-    name: "Vue",
-    color: "#41b883",
-    icon: "vue",
-    link: "https://cn.vuejs.org/",
-  },
-  {
-    name: "React",
-    color: "#149ECA",
-    icon: "react",
-    link: "https://zh-hans.reactjs.org/",
-  },
-  {
-    name: "Node.js",
-    color: "#026E00",
-    icon: "nodejs",
-    link: "https://nodejs.org/",
-  },
-  {
     name: "Python",
     color: "#3776AB",
     icon: "python",
     link: "https://www.python.org/",
-  },
-  {
-    name: "Docker",
-    color: "#2496f2",
-    icon: "docker",
-    link: "https://www.docker.com/",
   },
   {
     name: "Git",
@@ -235,6 +211,18 @@ const skillsData = [
     icon: "chatgpt",
     link: "https://chat.openai.com/",
   },
+  {
+    name:"php"
+    color:"#ae00ffff"
+    icon: "php"
+    link:""
+  },
+  {
+    name :"c++"
+    color: "#0033ffff"
+    icon:"c++"
+    link:""
+  }
 ];
 
 // 站点统计数据

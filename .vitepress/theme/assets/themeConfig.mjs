@@ -437,4 +437,16 @@ export const themeConfig = {
   tongji: {
     "51la": "",
   },
+  // 文章摘要 AI
+  articleGPT: {
+    enable: true,
+    // 显示名称
+    name: "Deepdark",
+    // API 地址
+    api: "https://chat-api4.087654.xyz/v1",
+    // API Key
+    apiKey: "sk-pJT9PhzK7D73yzU0EsogQk7m72cjL0P9yWAxFSkqee91jZlb",
+    // 模型标识符
+    model: "deepseek-v4-flash",
+  },
 };

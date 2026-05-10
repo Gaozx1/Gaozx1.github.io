@@ -1,13 +1,14 @@
-<!-- AI 摘要（假） -->
 <template>
-  <div v-if="frontmatter.articleGPT" class="article-gpt s-card">
+  <div v-if="showGPT" class="article-gpt s-card">
     <div class="title">
       <span class="name" @click="router.go('/posts/2024/0218')">
         <i class="iconfont icon-robot"></i>
         文章摘要
         <i class="iconfont icon-up"></i>
       </span>
-      <span :class="['logo', { loading }]" @click="showOther"> FakeGPT </span>
+      <span :class="['logo', { loading }]" @click="showOther">
+        {{ theme?.articleGPT?.name || 'ArticleGPT' }}
+      </span>
     </div>
     <div class="content s-card">
       <span class="text">{{ abstractData === "" ? "加载中..." : abstractData }}</span>
@@ -27,24 +28,42 @@
 </template>
 
 <script setup>
-const { frontmatter } = useData();
+const { frontmatter, theme, page } = useData();
 const router = useRouter();
 
-// 摘要数据
 const loading = ref(true);
 const waitTimeOut = ref(null);
 const abstractData = ref("");
 const showIndex = ref(0);
 const showType = ref(false);
 
-// 输出摘要
+const showGPT = computed(() => {
+  return frontmatter.value?.articleGPT !== undefined && frontmatter.value?.articleGPT !== false;
+});
+
+const getArticleContent = () => {
+  if (typeof frontmatter.value?.articleGPT === "string") {
+    return frontmatter.value.articleGPT;
+  }
+  
+  if (page.value?.content) {
+    let content = page.value.content;
+    content = content.replace(/```[\s\S]*?```/g, "");
+    content = content.replace(/`[^`]+`/g, "");
+    content = content.replace(/[#*>\-+]/g, "");
+    content = content.replace(/\s+/g, " ").trim();
+    return content.slice(0, 3000);
+  }
+  
+  return "";
+};
+
 const typeWriter = (text = null) => {
   try {
-    const data = text || frontmatter.value.articleGPT;
+    const data = text || abstractData.value;
     if (!data) return false;
     if (showIndex.value < data.length) {
       abstractData.value += data.charAt(showIndex.value++);
-      // 生成字符延迟
       const delay = Math.random() * (150 - 30) + 30;
       setTimeout(() => {
         typeWriter(text);
@@ -60,21 +79,67 @@ const typeWriter = (text = null) => {
   }
 };
 
-// 初始化摘要
-const initAbstract = () => {
-  waitTimeOut.value = setTimeout(
-    () => {
-      typeWriter();
-    },
-    Math.random() * (3800 - 2500) + 2500,
-  );
+const fetchAbstract = async () => {
+  const config = theme.value?.articleGPT;
+  if (!config?.enable || !config?.api) {
+    abstractData.value = "AI 摘要功能未启用或未配置 API";
+    loading.value = false;
+    return;
+  }
+
+  const content = getArticleContent();
+  if (!content) {
+    abstractData.value = "未能获取文章内容";
+    loading.value = false;
+    return;
+  }
+
+  try {
+    const response = await fetch(config.api, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        ...(config.apiKey ? { Authorization: `Bearer ${config.apiKey}` } : {}),
+      },
+      body: JSON.stringify({
+        content: content,
+        model: config.model || "gpt-3.5-turbo",
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`API 请求失败: ${response.status}`);
+    }
+
+    const result = await response.json();
+    const text = result.choices?.[0]?.message?.content || result.content || result.text || result.summary || "";
+
+    if (text) {
+      showIndex.value = 0;
+      abstractData.value = "";
+      setTimeout(() => {
+        typeWriter(text);
+      }, 100);
+    } else {
+      throw new Error("API 返回内容为空");
+    }
+  } catch (error) {
+    loading.value = false;
+    abstractData.value = "摘要生成失败";
+    $message.error("摘要生成失败，请重试");
+    console.error("摘要生成失败：", error);
+  }
 };
 
-// 输出摘要介绍
+const initAbstract = () => {
+  waitTimeOut.value = setTimeout(() => {
+    fetchAbstract();
+  }, Math.random() * (3800 - 2500) + 2500);
+};
+
 const showOther = () => {
   if (loading.value) return false;
-  const text =
-    "我是無名开发的摘要生成助理 FakeGPT，如你所见，这是一个假的 GPT，所有文本皆源于本地书写的内容。我在这里只负责显示，并仿照 GPT 的形式输出，如果你像我一样囊中羞涩，你也可以像我这样做，当然，你也可以使用 Tianli 开发的 TianliGPT 来更简单地实现真正的 AI 摘要。";
+  const text = `本文档使用 AI 技术自动生成摘要，API 配置地址在主题配置文件的 articleGPT.api 字段中修改。`;
   showIndex.value = 0;
   loading.value = true;
   abstractData.value = "";
@@ -88,7 +153,7 @@ const showOther = () => {
 };
 
 onMounted(() => {
-  if (frontmatter.value.articleGPT) initAbstract();
+  if (showGPT.value) initAbstract();
 });
 
 onBeforeUnmount(() => {
