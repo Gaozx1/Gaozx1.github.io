@@ -3,7 +3,7 @@ export const themeConfig = {
   // 站点信息
   siteMeta: {
     // 站点标题
-    title: "Curve",
+    title: "gaozx的小窝",
     // 站点描述
     description: "Gaozx's bolg",
     // 站点logo
@@ -16,14 +16,14 @@ export const themeConfig = {
     author: {
       name: "Gaozx1",
       cover: "/images/logo/logo.webp",
-      email: "gzx20140715@qq.com",
-      link: "https://www.imsyy.top",
+      email: "admin@mcapple.top",
+      link: "https://mcapple.top",
     },
   },
   // 备案信息
   icp: "暂无",
   // 建站日期
-  since: "2025-10-18",
+  since: "2026-05-10",
   // 每页文章数据
   postSize: 8,
   // inject
@@ -153,9 +153,9 @@ export const themeConfig = {
           url: "/",
         },
         {
-          icon: "/images/logo/logo.webp",
-          name: "博客镜像站",
-          url: "",
+          icon: "https://debug.mcapple.top/favicon.ico",
+          name: "debug站",
+          url: "https://debug.mcapple.top",
         },
       ],
     },
@@ -239,15 +239,11 @@ export const themeConfig = {
     social: [
       {
         icon: "email",
-        link: "gzx20140715@imsyy.top",
+        link: "mcapple@mcapple.top",
       },
       {
         icon: "github",
         link: "https://www.github.com/Gaozx1/",
-      },
-      {
-        icon: "telegram",
-        link: "https://t.me/bottom_user",
       },
       {
         icon: "bilibili",
@@ -255,12 +251,15 @@ export const themeConfig = {
       },
       {
         icon: "qq",
-        link: "https://res.abeim.cn/api/qq/?qq=1539250352",
+        link: "https://res.abeim.cn/api/qq/?qq=3903453593",
       },
       {
-        icon: "twitter-x",
-        link: "https://twitter.com/iimmsyy",
-      },
+        icon: "vx",
+        link: "gaozxixiu1",
+      },{
+        icon:"无",
+        link:"无"
+      }
     ],
     // sitemap
     sitemap: [
@@ -342,7 +341,7 @@ export const themeConfig = {
     // 站点简介
     hello: {
       enable: true,
-      text: "这里有关于<strong>开发</strong>相关的问题和看法，也会有一些<strong>奇技淫巧</strong>的分享，其中大部分内容会侧重于<strong>前端开发</strong>。希望你可以在这里找到对你有用的知识和教程。",
+      text: "这里有关于<strong>编程和服务器</strong>相关的问题和看法，也会有一些<strong>奇技淫巧</strong>的分享，其中大部分内容会侧重于<strong>mc服务器+c++</strong>。希望你可以在这里找到对你有用的知识和教程。",
     },
     // 目录
     toc: {
@@ -358,7 +357,7 @@ export const themeConfig = {
       // 倒计时日期
       data: {
         name: "建站",
-        date: "2025-10-18",
+        date: "2026-05-10",
       },
     },
     // 站点数据
@@ -401,9 +400,9 @@ export const themeConfig = {
   rewardData: {
     enable: true,
     // 微信二维码
-    wechat: "",
+    wechat: "https://img.cdn1.vip/i/6a008e79dacd9_1778421369.webp",
     // 支付宝二维码
-    alipay: "",
+    alipay: "https://cloudflarecnimg.scdn.io/i/6a008ea64f068_1778421414.webp",
   },
   // 图片灯箱
   fancybox: {
