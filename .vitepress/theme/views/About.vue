@@ -212,15 +212,15 @@ const skillsData = [
     link: "https://chat.openai.com/",
   },
   {
-    name:"php"
-    color:"#ae00ffff"
-    icon: "php"
+    name:"php",
+    color:"#ae00ffff",
+    icon: "php",
     link:""
   },
   {
-    name :"c++"
-    color: "#0033ffff"
-    icon:"c++"
+    name :"c++",
+    color: "#0033ffff",
+    icon:"c++",
     link:""
   }
 ];
