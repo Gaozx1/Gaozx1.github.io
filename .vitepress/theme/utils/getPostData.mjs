@@ -13,8 +13,8 @@ const getPostMDFilePaths = async () => {
     let paths = await globby(["**.md"], {
       ignore: ["node_modules", "pages", ".vitepress", "README.md"],
     });
-    // 过滤路径，只包括 'posts' 目录下的文件
-    return paths.filter((item) => item.includes("posts/"));
+    // 过滤路径，包括 'posts' 或 'page' 目录下的文件
+    return paths.filter((item) => item.includes("posts/") || item.includes("page/"));
   } catch (error) {
     console.error("获取文章路径时出错:", error);
     throw error;
@@ -60,7 +60,7 @@ export const getAllPosts = async () => {
           const { birthtimeMs, mtimeMs } = stat;
           // 解析 front matter
           const { data } = matter(content);
-          const { title, date, categories, description, tags, top, cover } = data;
+          const { title, date, categories, category, description, tags, tag, top, cover } = data;
           // 计算文章的过期天数
           const expired = Math.floor(
             (new Date().getTime() - new Date(date).getTime()) / (1000 * 60 * 60 * 24),
@@ -72,8 +72,8 @@ export const getAllPosts = async () => {
             date: date ? new Date(date).getTime() : birthtimeMs,
             lastModified: mtimeMs,
             expired,
-            tags,
-            categories,
+            tags: tags || tag,
+            categories: categories || category,
             description,
             regularPath: `/${item.replace(".md", ".html")}`,
             top,
