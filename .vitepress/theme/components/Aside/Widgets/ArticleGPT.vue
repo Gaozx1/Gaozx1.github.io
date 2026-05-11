@@ -48,6 +48,7 @@ const getArticleContent = () => {
   
   if (page.value?.content) {
     let content = page.value.content;
+    content = content.replace(/<[^>]*>/g, "");
     content = content.replace(/```[\s\S]*?```/g, "");
     content = content.replace(/`[^`]+`/g, "");
     content = content.replace(/[#*>\-+]/g, "");

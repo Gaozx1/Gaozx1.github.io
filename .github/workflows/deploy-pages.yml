@@ -1,14 +1,8 @@
 name: Deploy to GitHub Pages
 
 on:
-  push:
-    branches:
-      - main
-    paths-ignore:
-      - '.github/**'
-      - 'pages/**'
-      - 'public/**'
-      - '.vitepress/**'
+  schedule:
+    - cron: '0 16 * * *'
   workflow_dispatch:
 
 jobs:
