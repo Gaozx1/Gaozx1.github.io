@@ -2,6 +2,7 @@
   <aside class="main-aside">
     <Hello v-if="theme.aside.hello.enable" class="weidgets" />
     <div class="sticky">
+      <ArticleGPT v-if="frontmatter?.articleGPT !== false" class="weidgets" />
       <Toc v-if="theme.aside.toc.enable && showToc" class="weidgets" />
       <Countdown class="weidgets" />
       <Tags v-if="theme.aside.tags.enable" class="weidgets" />
@@ -11,7 +12,7 @@
 </template>
 
 <script setup>
-const { theme } = useData();
+const { theme, frontmatter } = useData();
 const props = defineProps({
   // 显示目录
   showToc: {
