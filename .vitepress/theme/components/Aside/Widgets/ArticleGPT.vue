@@ -47,12 +47,21 @@ const getArticleContent = () => {
   }
   
   const pageContent = page.value?.content;
+  const rawContent = page.value?.rawContent;
   const frontmatterContent = frontmatter.value?.content;
   
-  let content = pageContent || frontmatterContent || "";
+  let content = pageContent || rawContent || frontmatterContent || "";
   
   if (!content) {
-    console.warn("ArticleGPT: 无法获取文章内容，page.content 和 frontmatter.content 都为空");
+    console.warn("ArticleGPT: 尝试从DOM获取文章内容");
+    const articleDom = document.querySelector('.article-content, .post-content, #content');
+    if (articleDom) {
+      content = articleDom.textContent || articleDom.innerText || "";
+    }
+  }
+  
+  if (!content) {
+    console.warn("ArticleGPT: 所有获取文章内容的方式都失败了");
     return "";
   }
   
