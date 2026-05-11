@@ -18,17 +18,25 @@
     <!-- 管理界面 -->
     <div v-else class="admin-panel">
       <div class="header">
-        <h2>文章管理助手</h2>
+        <h2>文章管理</h2>
         <button @click="showWritePanel = !showWritePanel" class="btn-write">
           {{ showWritePanel ? '隐藏' : '写文章' }}
         </button>
       </div>
 
-      <!-- 说明 -->
-      <div class="notice s-card">
-        <h3>使用说明</h3>
-        <p>由于浏览器安全限制，此工具生成文章内容后需要手动保存到 <code>page/</code> 目录</p>
-        <p>文章会按日期自动创建目录结构</p>
+      <!-- GitHub Token 配置 -->
+      <div class="token-panel s-card">
+        <h3>GitHub 配置</h3>
+        <p>请输入 GitHub Personal Access Token（需要 repo 权限）</p>
+        <div class="input-group">
+          <input
+            type="password"
+            v-model="githubToken"
+            placeholder="GitHub Personal Access Token"
+          />
+        </div>
+        <button @click="saveToken" class="btn-save-token">保存 Token</button>
+        <p v-if="tokenSaved" class="token-success">Token 已保存！</p>
       </div>
 
       <!-- 写文章面板 -->
@@ -58,6 +66,7 @@
           <textarea v-model="newArticle.content" placeholder="文章内容"></textarea>
         </div>
         <div class="form-actions">
+          <button @click="saveToGitHub" class="btn-save-github">直接保存到 GitHub</button>
           <button @click="generateArticle">生成文章</button>
           <button @click="resetForm" class="btn-secondary">重置</button>
         </div>
@@ -78,7 +87,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 
 const isLoggedIn = ref(false)
 const password = ref('')
@@ -86,6 +95,8 @@ const error = ref('')
 const showWritePanel = ref(true)
 const generatedContent = ref('')
 const copied = ref(false)
+const githubToken = ref('')
+const tokenSaved = ref(false)
 
 const newArticle = ref({
   title: '',
@@ -101,19 +112,30 @@ const filePath = computed(() => {
   const year = dateObj.getFullYear()
   const month = String(dateObj.getMonth() + 1).padStart(2, '0')
   const day = String(dateObj.getDate()).padStart(2, '0')
-  return `page/${year}-${month}-${day}/${Date.now()}.md`
+  return `posts/${year}/${year}${month}${day}01.md`
 })
 
 const ADMIN_PASSWORD = 'gzx140715'
+const REPO_OWNER = 'Gaozx1'
+const REPO_NAME = 'Gaozx1.github.io'
 
 const login = () => {
   if (password.value === ADMIN_PASSWORD) {
     isLoggedIn.value = true
     error.value = ''
     localStorage.setItem('adminLoggedIn', 'true')
+    githubToken.value = localStorage.getItem('githubToken') || ''
   } else {
     error.value = '密码错误'
   }
+}
+
+const saveToken = () => {
+  localStorage.setItem('githubToken', githubToken.value)
+  tokenSaved.value = true
+  setTimeout(() => {
+    tokenSaved.value = false
+  }, 2000)
 }
 
 const generateArticle = () => {
@@ -141,6 +163,66 @@ const generateArticle = () => {
   generatedContent.value = content
 }
 
+const saveToGitHub = async () => {
+  if (!githubToken.value) {
+    alert('请先输入 GitHub Token！')
+    return
+  }
+  
+  const content = generateArticleContent()
+  const path = filePath.value
+  
+  try {
+    const response = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${path}`, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `token ${githubToken.value}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        message: `Add new article: ${newArticle.value.title}`,
+        content: btoa(unescape(encodeURIComponent(content))),
+        branch: 'main'
+      })
+    })
+    
+    if (response.ok) {
+      alert('文章已成功保存到 GitHub！')
+      resetForm()
+    } else {
+      const errorData = await response.json()
+      alert('保存失败: ' + (errorData.message || '未知错误'))
+    }
+  } catch (e) {
+    alert('保存失败: ' + e.message)
+  }
+}
+
+const generateArticleContent = () => {
+  const tagsArray = newArticle.value.tagsInput.split(',').map(tag => tag.trim()).filter(tag => tag)
+  
+  let content = '---\n'
+  content += `title: "${newArticle.value.title}"\n`
+  content += `date: "${newArticle.value.date}"\n`
+  if (newArticle.value.category) {
+    content += `category: "${newArticle.value.category}"\n`
+  }
+  if (tagsArray.length > 0) {
+    content += `tags:\n`
+    tagsArray.forEach(tag => {
+      content += `  - "${tag}"\n`
+    })
+  }
+  if (newArticle.value.cover) {
+    content += `cover: "${newArticle.value.cover}"\n`
+  }
+  content += `articleGPT: true\n`
+  content += '---\n\n'
+  content += newArticle.value.content
+  
+  return content
+}
+
 const copyToClipboard = () => {
   navigator.clipboard.writeText(generatedContent.value).then(() => {
     copied.value = true
@@ -162,11 +244,11 @@ const resetForm = () => {
   generatedContent.value = ''
 }
 
-import { onMounted } from 'vue'
 onMounted(() => {
   const stored = localStorage.getItem('adminLoggedIn')
   if (stored === 'true') {
     isLoggedIn.value = true
+    githubToken.value = localStorage.getItem('githubToken') || ''
   }
 })
 </script>
@@ -237,20 +319,20 @@ button:hover {
   background: #4CAF50;
 }
 
-.notice {
+.token-panel {
   padding: 1.5rem;
   margin-bottom: 1.5rem;
-  background: #fff3cd;
-  border-left: 4px solid #ffc107;
+  background: #e3f2fd;
+  border-left: 4px solid #2196F3;
   
   h3 {
     margin: 0 0 0.5rem 0;
-    color: #856404;
+    color: #1565c0;
   }
   
   p {
     margin: 0.3rem 0;
-    color: #856404;
+    color: #1565c0;
   }
   
   code {
@@ -258,6 +340,15 @@ button:hover {
     padding: 0.2rem 0.4rem;
     border-radius: 3px;
   }
+}
+
+.btn-save-token {
+  background: #2196F3;
+}
+
+.token-success {
+  color: #4CAF50;
+  margin-top: 0.5rem;
 }
 
 .write-panel {
@@ -297,6 +388,10 @@ button:hover {
 
 .btn-secondary {
   background: #666;
+}
+
+.btn-save-github {
+  background: #4CAF50;
 }
 
 .preview-panel {
