@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+    <channel>
+        <title>Gaozx</title>
+        <link>https://Gaozx1.github.io</link>
+        <description>基于 vitepress-theme-curve 搭建的 github pages 站点</description>
+        <lastBuildDate>Mon, 11 May 2026 10:51:15 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>gaozx</generator>
+        <language>zh</language>
+        <copyright>Copyright © 2020-present gaozx</copyright>
+        <item>
+            <title><![CDATA[关于debug站崩溃]]></title>
+            <link>https://Gaozx1.github.io/posts/2026/2026051101</link>
+            <guid>https://Gaozx1.github.io/posts/2026/2026051101</guid>
+            <pubDate>Mon, 11 May 2026 00:00:00 GMT</pubDate>
+            <author>gzx20140715@qq.com (gaozx)</author>
+        </item>
+    </channel>
+</rss>
