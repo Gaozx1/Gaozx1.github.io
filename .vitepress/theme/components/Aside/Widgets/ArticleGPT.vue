@@ -46,17 +46,25 @@ const getArticleContent = () => {
     return frontmatter.value.articleGPT;
   }
   
-  if (page.value?.content) {
-    let content = page.value.content;
-    content = content.replace(/<[^>]*>/g, "");
-    content = content.replace(/```[\s\S]*?```/g, "");
-    content = content.replace(/`[^`]+`/g, "");
-    content = content.replace(/[#*>\-+]/g, "");
-    content = content.replace(/\s+/g, " ").trim();
-    return content.slice(0, 3000);
+  const pageContent = page.value?.content;
+  const frontmatterContent = frontmatter.value?.content;
+  
+  let content = pageContent || frontmatterContent || "";
+  
+  if (!content) {
+    console.warn("ArticleGPT: 无法获取文章内容，page.content 和 frontmatter.content 都为空");
+    return "";
   }
   
-  return "";
+  content = content.replace(/<[^>]*>/g, "");
+  content = content.replace(/```[\s\S]*?```/g, "");
+  content = content.replace(/`[^`]+`/g, "");
+  content = content.replace(/[#*>\-+]/g, "");
+  content = content.replace(/\s+/g, " ").trim();
+  
+  console.log("ArticleGPT: 提取的文章内容长度:", content.length);
+  
+  return content.slice(0, 3000);
 };
 
 const typeWriter = (text = null) => {
